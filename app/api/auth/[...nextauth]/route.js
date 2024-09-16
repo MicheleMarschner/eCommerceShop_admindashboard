@@ -1,6 +1,6 @@
 import NextAuth, { getServerSession } from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
-import { MongoDBAdapter } from "mongodb-adapter"
+import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import client from "../../../lib/mongodb"
 
 const adminEmails = ["michele.marschner@gmail.com"]
