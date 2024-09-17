@@ -49,7 +49,14 @@ function ProductForm({
           data.append('file', file);
         }
 
-        const res = await axios.post('/api/upload', data)
+        const res = await axios.post('/api/upload', {
+          method: 'POST',
+          body: data,
+          headers: {
+            'Content-type': "multipart/form-data"
+          } 
+        }
+        )
         console.log(res.data.links)
         setImages( oldImages => {
           return [...oldImages, ...res.data.links]
