@@ -53,7 +53,7 @@ function ProductForm({
           method: 'POST',
           body: data,
           headers: {
-            'Content-type': "multipart/form-data"
+            'x-custom-header': 'your-custom-header',
           } 
         }
         )
