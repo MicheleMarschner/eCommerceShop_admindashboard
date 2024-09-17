@@ -11,7 +11,7 @@ export async function POST(req, res) {
 
         const links = [];
 
-        //await isAdminRequest(req, res);
+        await isAdminRequest(req, res);
 
 
         if (Array.isArray(files)) {

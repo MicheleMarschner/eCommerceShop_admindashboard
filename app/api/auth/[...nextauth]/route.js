@@ -28,8 +28,10 @@ export { handler as GET, handler as POST }
 
 export async function isAdminRequest() {
   const session = await getServerSession(authOptions)
+
+  const adminEmail = process.env.ADMIN_EMAIL
   
-  if (!adminEmails.includes(session?.user?.email)) {
+  if (!adminEmail === session?.user?.email) {
     NextResponse.json({message: 'Unauthorized'}, { status: 401 });
     throw 'not an admin'
   }
