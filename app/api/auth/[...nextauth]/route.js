@@ -36,5 +36,5 @@ export async function isAdminRequest() {
     //throw 'not an admin'
   }
 
-  return NextResponse.next();
+  return <pre>{JSON.stringify(session, null, 2)}</pre>
 }
