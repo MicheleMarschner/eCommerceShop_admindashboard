@@ -196,9 +196,8 @@ function ProductForm({
           onChange={e => setPrice(e.target.value)}
         />
         <button 
-          type="submit"
           className="btn-primary"
-          onClick={saveProduct}
+          onClick={e => saveProduct(e)}
         >Save</button>
     </>
   )
