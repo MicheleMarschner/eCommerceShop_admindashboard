@@ -1,4 +1,5 @@
-import NextAuth, { getServerSession, NextResponse, NextRequest } from "next-auth"
+import NextAuth, { getServerSession } from "next-auth"
+import { NextResponse } from 'next/server';
 import GoogleProvider from "next-auth/providers/google"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import client from "../../../lib/mongodb"

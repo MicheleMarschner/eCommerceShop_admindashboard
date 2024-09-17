@@ -9,7 +9,7 @@ export async function POST(req, res) {
     const { name, parentCategory, properties } = body;
 
     await mongooseConnect();
-    //await isAdminRequest(req, res);
+    await isAdminRequest(req, res);
 
     const newCategory = await Category.create({ 
         name, 
@@ -42,7 +42,7 @@ export async function PUT(req, res) {
     const { category, parentCategory, properties, _id } = body;
 
     await mongooseConnect();
-    //await isAdminRequest(req, res);
+    await isAdminRequest(req, res);
 
     const updatedCategory = await Category.updateOne(
         {_id},
