@@ -15,7 +15,7 @@ export default function Layout({ children }) {
   const { data: session } = useSession()
 
   // checking if sessions exists
-  {/*if (!session) {
+  {if (!session) {
     return (
       <div className="bg-bgGray w-screen h-screen flex items-center">
         <Nav />
@@ -25,7 +25,7 @@ export default function Layout({ children }) {
       </div>
     )
   }
-  */}
+  }
 
   // rendered code if user not logged in
   return (
