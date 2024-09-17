@@ -3,8 +3,6 @@ import GoogleProvider from "next-auth/providers/google"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import client from "../../../lib/mongodb"
 
-const adminEmails = ["michele.marschner@gmail.com"]
-
 export const authOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(client),
@@ -16,7 +14,7 @@ export const authOptions = {
   ],
   callbacks: {
     session: ({session, token, user}) => {
-        if (adminEmails.includes(session?.user?.email)) return session;
+        if (process.env.ADMIN_EMAIL === session?.user?.email) return session;
         return false;
     }
   }
@@ -32,9 +30,9 @@ export async function isAdminRequest() {
   const session = await getServerSession(authOptions)
   
   if (!adminEmails.includes(session?.user?.email)) {
-    return NextResponse.json("Unauthorized", { status: 401 });
-    //throw 'not an admin'
+    NextResponse.json({message: 'Unauthorized'}, { status: 401 });
+    throw 'not an admin'
   }
 
-  return <pre>{JSON.stringify(session, null, 2)}</pre>
+  return NextResponse.json(session, null, 2);
 }

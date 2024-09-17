@@ -64,7 +64,7 @@ export async function DELETE(req, res) {
     if (!id) NextResponse.json(false);
 
     await mongooseConnect();
-    //await isAdminRequest(req, res);
+    await isAdminRequest(req, res);
 
     const deletedCategory = await Category.deleteOne({_id:id})
     
