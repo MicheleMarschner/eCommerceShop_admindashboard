@@ -6,6 +6,7 @@ import client from "../../../lib/mongodb"
 const adminEmails = ["michele.marschner@gmail.com"]
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   adapter: MongoDBAdapter(client),
   providers: [
     GoogleProvider({
