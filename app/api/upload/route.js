@@ -2,6 +2,12 @@ import { NextResponse } from 'next/server';
 import {PutObjectCommand, S3Client} from '@aws-sdk/client-s3'; 
 import { isAdminRequest } from '../auth/[...nextauth]/route';
 
+export const config = {
+    api: {
+        bodyParser: false}
+}
+
+
 
 export async function POST(req, res) {
     try {
