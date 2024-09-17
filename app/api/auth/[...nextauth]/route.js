@@ -37,5 +37,5 @@ export async function isAdminRequest() {
     throw 'not an admin'
   }
 
-  return NextResponse.json(session, null, 2);
+  return NextResponse.json(session);
 }
