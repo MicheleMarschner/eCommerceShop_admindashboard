@@ -114,7 +114,7 @@ function ProductForm({
     }, [goToProducts]);
 
   return (
-    <form onSubmit={saveProduct} method="POST">
+    <>
         <label>Product name</label>
         <input 
           type="text" 
@@ -198,8 +198,9 @@ function ProductForm({
         <button 
           type="submit"
           className="btn-primary"
+          onClick={saveProduct}
         >Save</button>
-    </form>
+    </>
   )
 }
 
