@@ -28,8 +28,8 @@ const handler = NextAuth(authOptions)
 export { handler as GET, handler as POST }
 
 
-export async function isAdminRequest(req) {
-  const session = await getServerSession(req, authOptions)
+export async function isAdminRequest() {
+  const session = await getServerSession(authOptions)
   
   if (!adminEmails.includes(session?.user?.email)) {
     return NextResponse.json("Unauthorized", { status: 401 });
