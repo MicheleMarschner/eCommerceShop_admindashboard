@@ -197,7 +197,7 @@ function ProductForm({
         />
         <button 
           className="btn-primary"
-          onClick={e => saveProduct(e)}
+          onClick={saveProduct}
         >Save</button>
     </>
   )
