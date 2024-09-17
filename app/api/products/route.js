@@ -10,7 +10,7 @@ export async function POST(req, res) {
     const { title, description, price, images, category, properties } = body;
 
     await mongooseConnect();
-    await isAdminRequest(req, res);
+    //await isAdminRequest(req, res);
 
     const createdProduct = await Product.create({
         title, description, price, images, category, properties
