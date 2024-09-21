@@ -6,7 +6,9 @@ import { isAdminRequest } from '../auth/[...nextauth]/route';
 
 export async function POST(req, res) {
     const body = await req.json(); // Parse the request body as JSON
-    const { name, parentCategory, properties } = body;
+    const { name, parentCategory, imageUrl, properties } = body;
+
+    console.log("image", imageUrl)
 
     await mongooseConnect();
     await isAdminRequest(req, res);
@@ -14,6 +16,7 @@ export async function POST(req, res) {
     const newCategory = await Category.create({ 
         name, 
         parent: parentCategory || undefined,
+        imageUrl,
         properties
     })
 
@@ -33,25 +36,29 @@ export async function GET(req, res) {
         return NextResponse.json(Categories); 
     } else {
         Categories = await Category.find().populate('parent');
+        console.log("categories", Categories)
         return NextResponse.json(Categories); 
     }
 }
 
 export async function PUT(req, res) {
     const body = await req.json(); // Parse the request body as JSON
-    const { category, parentCategory, properties, _id } = body;
+    const { name, parentCategory, imageUrl, properties, _id } = body;
 
     await mongooseConnect();
     await isAdminRequest(req, res);
 
-    const updatedCategory = await Category.updateOne(
+    const updatedCategory = await Category.findByIdAndUpdate(
         {_id},
         {
-            category, 
+            name, 
             parent: parentCategory || undefined, 
+            imageUrl,
             properties
         }
     )
+
+    console.log("updatedCategory",updatedCategory)
 
     return NextResponse.json(updatedCategory); 
 }

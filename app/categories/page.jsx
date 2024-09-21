@@ -14,6 +14,7 @@ function Categories() {
   const [ name, setName ] = useState('')
   const [ parentCategory, setParentCategory ] = useState('');
   const [ categories, setCategories ] = useState([]);
+  const [ imageUrl, setImageUrl ] = useState('');
   const [ properties, setProperties ] = useState([]);
 
   const saveCategory = async(e) => {
@@ -22,6 +23,7 @@ function Categories() {
     const data = { 
       name, 
       parentCategory, 
+      imageUrl,
       properties: properties.map(p => ({
         name: p.name, 
         values: p.values.split(',')
@@ -39,8 +41,8 @@ function Categories() {
     fetchCategories();
     setName('');
     setParentCategory('');
+    setImageUrl('')
     setProperties([]);
-    console.log(data)
   }
 
 
@@ -84,10 +86,10 @@ function Categories() {
   }
 
   const editCategory = (category) => {
-    console.log(category)
     setEditedCategory(category)
     setName(category.name)
     setParentCategory(category.parent?._id)
+    setImageUrl(category.imageUrl)
     setProperties(category.properties?.map(
       ({name, values}) => (
         { 
@@ -133,7 +135,9 @@ function Categories() {
               onChange={e => setName(e.target.value)} 
             />
             <select 
-              onChange={e => setParentCategory(e.target.value)}
+              onChange={e => {
+                setParentCategory(e.target.value)
+                console.log(e.target.value)}}
               value={parentCategory}
             >
               <option value="">No parent category</option>
@@ -141,6 +145,12 @@ function Categories() {
                 <option value={category._id}>{category.name}</option>
               ))}
             </select>
+            <input 
+              type="text" 
+              placeholder={'Image url'}
+              value={imageUrl} 
+              onChange={e => setImageUrl(e.target.value)} 
+            />
           </div>
           {editedCategory && (
             <div className='mb-2'>
@@ -189,6 +199,7 @@ function Categories() {
                   setEditedCategory(null)
                   setName('');
                   setParentCategory('');
+                  setImageUrl('');
                   setProperties([])
                 }}
                 className="btn-default mr-1"

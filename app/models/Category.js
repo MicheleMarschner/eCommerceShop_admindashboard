@@ -10,6 +10,10 @@ const CategorySchema = new Schema({
         ref: 'Category',
         default: null,  // Allowing null values
     },
+    imageUrl: {
+        type: String,
+        default: null,  // Allowing null values
+    },
     properties: [{
         type: Object
     }]
