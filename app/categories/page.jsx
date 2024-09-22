@@ -135,9 +135,7 @@ function Categories() {
               onChange={e => setName(e.target.value)} 
             />
             <select 
-              onChange={e => {
-                setParentCategory(e.target.value)
-                console.log(e.target.value)}}
+              onChange={e => setParentCategory(e.target.value)}
               value={parentCategory}
             >
               <option value="">No parent category</option>

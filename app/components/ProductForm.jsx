@@ -50,7 +50,7 @@ function ProductForm({
         }
 
         const res = await axios.post('/api/upload', data)
-        console.log(res.data.links)
+
         setImages( oldImages => {
           return [...oldImages, ...res.data.links]
         })
@@ -101,10 +101,7 @@ function ProductForm({
 
     useEffect(() => {
       axios.get('/api/categories')
-            .then(res => {
-              setCategories(res.data)
-              console.log(res.data)
-            })
+            .then(res => setCategories(res.data))
 
       if (assignedCategory) handleCategoryChange(assignedCategory)
       }, []);

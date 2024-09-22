@@ -8,8 +8,6 @@ export async function POST(req, res) {
     const body = await req.json(); // Parse the request body as JSON
     const { name, parentCategory, imageUrl, properties } = body;
 
-    console.log("image", imageUrl)
-
     await mongooseConnect();
     await isAdminRequest(req, res);
 
@@ -36,7 +34,6 @@ export async function GET(req, res) {
         return NextResponse.json(Categories); 
     } else {
         Categories = await Category.find().populate('parent');
-        console.log("categories", Categories)
         return NextResponse.json(Categories); 
     }
 }
@@ -57,8 +54,6 @@ export async function PUT(req, res) {
             properties
         }
     )
-
-    console.log("updatedCategory",updatedCategory)
 
     return NextResponse.json(updatedCategory); 
 }

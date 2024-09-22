@@ -2,7 +2,7 @@
 "use client";
 
 // importing necessary functions
-import { useSession, signIn, signOut } from "next-auth/react"
+import { useSession, signIn } from "next-auth/react"
 import Nav from "./Nav"
 import Logo from './Logo'
 import { useState } from "react";
@@ -18,7 +18,6 @@ export default function Layout({ children }) {
   {if (!session) {
     return (
       <div className="bg-bgGray w-screen h-screen flex items-center">
-        <Nav />
         <div className="text-center w-full">
           <button onClick={() => signIn('google')} className="bg-white p-2 px-4 rounded-lg">Login with Google</button>
         </div>
